@@ -46,14 +46,35 @@ typedef enum
 
 class PCF8574 {
     public:
+        /**
+         * Create an instance of the expander class
+         * @param i2c_port I2C bus to be used (i2c0 or i2c1)
+         * @param sda SDA pin number
+         * @param scl SCL pin number
+         * @param address Address of the expander
+         */
         PCF8574(i2c_inst_t *i2c_port, uint sda, uint scl, PCF8574_address address);
         /**
          * Write a byte value to the expander outputs.
          * @param value Byte to be written
          */
         void write8(const uint8_t value);
+        /** 
+         * Read a byte value from the expander pins.
+         * @return readed byte
+         */
         uint8_t read8();
+        /**
+         * Write value to the single pin
+         * @param pin pin number from 0 to 7
+         * @param value value of the pin (0 or 1)
+         */
         void write(const uint8_t pin, const uint8_t value);
+        /**
+         * Read value from the single pin
+         * @param pin pin number from 0 to 7
+         * @return value of the pin
+         */
         uint8_t read(uint8_t pin);
 
     private:
